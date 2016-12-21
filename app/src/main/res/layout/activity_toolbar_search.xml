@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/viewBg"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.ToolbarSearchActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_toolbarsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <EditText
+            android:id="@+id/editTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:singleLine="true"
+            android:layout_marginTop="5dp"
+            android:hint="@string/search"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:maxLines="1" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tvMessageNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_toolbarsearch"
+        tools:text="Comic not found..."
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMessageNotFound"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"/>
+
+</RelativeLayout>

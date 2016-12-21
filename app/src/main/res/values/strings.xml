@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favorites</string>
+    <string name="action_play_next">Play Next</string>
+    <string name="backdrop_title">MARVEL</string>
+    <string name="backdrop_subtitle">Test for Android</string>
+
+    <string name="girl_ipsum">
+        Morbi posuere lorem nec elit dapibus, vitae accumsan mauris pellentesque.
+        Vestibulum a lobortis mi. Vestibulum lacinia molestie semper. Pellentesque
+        ultrices arcu lacus, interdum mollis nibh convallis ut. Aliquam sagittis
+        sem a lacus gravida, eu accumsan purus volutpat. Donec tempus, est id
+        tristique consectetur, lacus ligula dignissim turpis, cursus commodo turpis
+        libero in purus. Phasellus tempus gravida tempor.
+    </string>
+    <string name="loading">loading...</string>
+    <string name="loading_complete">Loading Complete!</string>
+    <string name="available_comics">%1$d comics</string>
+    <string name="favorites">Favorites</string>
+    <string name="search">Search</string>
+    <string name="text_description">Description</string>
+
+    <string name="facebook_app_id">1168571233239434</string>
+</resources>
