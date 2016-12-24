@@ -92,6 +92,7 @@ public class DBManager {
                 charactersTb.setPageCount(item.getPageCount());
                 charactersTb.setThumbnail(item.getThumbnail().getPath() + "." + item.getThumbnail().getExtension());
                 charactersTb.save();
+
                 mSavedCounter++;
             }
         }

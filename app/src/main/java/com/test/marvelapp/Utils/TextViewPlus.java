@@ -1,5 +1,6 @@
 package com.test.marvelapp.Utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
@@ -13,7 +14,8 @@ import com.test.marvelapp.R;
 /**
  * Created by Nicolas on 29/09/2016.
  */
-class TextViewPlus extends TextView {
+@SuppressLint("NewApi")
+public class TextViewPlus extends TextView {
 
     private static final String TAG = "TextView";
 

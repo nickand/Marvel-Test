@@ -68,8 +68,8 @@ public class FavoritesActivity extends AppCompatActivity {
         }
 
         if (mFavorites != null) {
-            adapter = new MarvelAdapter(FavoritesActivity.this, mFavorites);
-            recyclerView.setAdapter(adapter);
+//            adapter = new MarvelAdapter(FavoritesActivity.this, mFavorites);
+//            recyclerView.setAdapter(adapter);
         } else {
             Log.d(CLASS_TAG, "ADAPTER FAVORITOS VACIO");
         }

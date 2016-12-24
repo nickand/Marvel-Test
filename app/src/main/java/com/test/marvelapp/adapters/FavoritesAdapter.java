@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.marvelapp.R;
-import com.test.marvelapp.activities.DetailsActivity;
 import com.test.marvelapp.database.CharactersTb;
 import com.bumptech.glide.Glide;
 
@@ -74,8 +73,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MyVi
             @Override
             public void onClick(View v) {
                 //Toast.makeText(mContext, "Position: "+position, Toast.LENGTH_SHORT).show();
-                DetailsActivity.createInstance(
-                        (Activity) mContext, charactersList.get(position));
+//                DetailsActivity.createInstance(
+//                        (Activity) mContext, charactersList.get(position));
             }
         });
     }
