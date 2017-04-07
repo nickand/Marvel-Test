@@ -93,7 +93,8 @@ public class LoginFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonLogin:
-                onButtonFacebookPressed();
+//                onButtonFacebookPressed();
+                onGoMainActivity();
                 break;
         }
     }
