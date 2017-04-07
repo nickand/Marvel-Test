@@ -4,12 +4,6 @@
     tools:context=".MainActivity" >
 
     <item
-        android:id="@+id/action_profile"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:showAsAction="always"
-        android:title="Profile" />
-
-    <item
         android:id="@+id/action_favorite"
         android:icon="@mipmap/ic_star_white_24dp"
         android:orderInCategory="1"

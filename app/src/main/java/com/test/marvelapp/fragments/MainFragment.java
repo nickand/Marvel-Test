@@ -124,6 +124,22 @@ public class MainFragment extends Fragment {
             }
         });
 
+        imageSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+                fragment = SearchFragment.newInstance();
+                mListener.navigateTo(fragment);
+            }
+        });
+
+        imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 

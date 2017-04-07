@@ -1,5 +1,6 @@
 package com.test.marvelapp.fragments;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,21 +11,17 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.test.marvelapp.R;
+import com.test.marvelapp.Utils.Constants;
 import com.test.marvelapp.Utils.GridSpacingItemDecoration;
-import com.test.marvelapp.activities.FavoritesActivity;
-import com.test.marvelapp.adapters.MarvelAdapter;
+import com.test.marvelapp.adapters.FavoritesAdapter;
 import com.test.marvelapp.database.CharactersTb;
 import com.test.marvelapp.database.DBManager;
 import com.test.marvelapp.database.FavoritesTb;
+import com.test.marvelapp.interfaces.OnClickActivityListener;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by Nicolas on 23/12/2016.
@@ -33,15 +30,27 @@ import butterknife.ButterKnife;
 public class FavoritesFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param";
-    private static FavoritesFragment fragment;
 
     private static final String TAG = FavoritesFragment.class.getName();
     private RecyclerView recyclerView;
-    private MarvelAdapter adapter;
-    private List<CharactersTb> mFavorites;
+    private FavoritesAdapter adapter;
+    private ArrayList<CharactersTb> mFavorites;
 
     private GridSpacingItemDecoration gridItemDecoration;
-    private List<FavoritesTb> favs;
+    private ArrayList<FavoritesTb> favs;
+
+    private OnClickActivityListener mListener;
+
+    private int mId = 0;
+    private String mDescription = "";
+    private float mPrice = 0;
+    private String mDate = "";
+    private String mStories = "";
+    private String mCreators = "";
+    private String mCharacters = "";
+    private String mTitle = "";
+    private String mThumb = "";
+    private int mPageCount = 0;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -58,6 +67,13 @@ public class FavoritesFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    public static FavoritesFragment newInstance(Bundle args) {
+        FavoritesFragment favoritesFragment = new FavoritesFragment();
+        favoritesFragment.setArguments(args);
+        return favoritesFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +100,23 @@ public class FavoritesFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnClickActivityListener) {
+            mListener = (OnClickActivityListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnClickActivityListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "ON RESUME");
@@ -98,7 +131,7 @@ public class FavoritesFragment extends Fragment {
 
     public void loadFavorites(){
         mFavorites = new ArrayList<CharactersTb>();
-        favs = (List<FavoritesTb>) DBManager.getInstance(getActivity()).getComicsFromTable(FavoritesTb.class);
+        favs = (ArrayList<FavoritesTb>) DBManager.getInstance(getActivity()).getComicsFromTable(FavoritesTb.class);
 
         for (int i = 0; i < favs.size(); i++){
 //            Log.d(TAG, favs.get(i).getCharFav().getName()+"-"+favs.get(i).getCharFav().getId());
@@ -106,7 +139,7 @@ public class FavoritesFragment extends Fragment {
         }
 
         if (mFavorites != null) {
-            adapter = new MarvelAdapter(getActivity(), mFavorites);
+            adapter = new FavoritesAdapter(getActivity(), mFavorites, mListener);
             recyclerView.setAdapter(adapter);
         } else {
             Log.d(TAG, "ADAPTER FAVORITOS VACIO");

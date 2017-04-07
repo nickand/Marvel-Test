@@ -1,4 +1,4 @@
-package com.test.marvelapp.Utils;
+package com.test.marvelapp;
 
 import android.app.Application;
 

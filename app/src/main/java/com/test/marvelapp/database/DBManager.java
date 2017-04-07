@@ -48,14 +48,13 @@ public class DBManager {
         boolean saved = false;
         mSavedCounter = 0;
 
+        CharactersTb charactersTb = new CharactersTb();
+
         for (MarvelResults item : comics) {
             CharactersTb prevRecord = recordExist(item.getId());
             if (prevRecord == null) {
-                CharactersTb charactersTb = new CharactersTb();
                 charactersTb.setId(item.getId());
                 charactersTb.setTitle(item.getTitle());
-                charactersTb.setPrice(item.getPrices().get(0).getPrice());
-                charactersTb.setStories(item.getStories().getItems().get(0).getName());
 
                 if (item.getCreators().getItems().size() > 0) {
                     StringBuilder commaSepValueBuilder = new StringBuilder();

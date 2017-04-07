@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-        android:name=".Utils.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,19 +20,10 @@
 
         </activity>
 
-        <activity
-            android:name=".activities.FavoritesActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:label="@string/favorites" />
-
         <service
             android:name=".services.DataService"
             android:exported="false" />
 
-        <activity
-            android:name=".activities.ToolbarSearchActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SessionFacebookActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -53,7 +44,6 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

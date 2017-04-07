@@ -2,6 +2,7 @@ package com.test.marvelapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.marvelapp.R;
+import com.test.marvelapp.Utils.Constants;
 import com.test.marvelapp.database.CharactersTb;
 import com.bumptech.glide.Glide;
+import com.test.marvelapp.fragments.DetailFragment;
+import com.test.marvelapp.fragments.FavoritesFragment;
+import com.test.marvelapp.interfaces.OnClickActivityListener;
 
 import java.util.ArrayList;
 
@@ -27,10 +32,13 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MyVi
     private static final String CLASS_TAG = FavoritesAdapter.class.getName();
     private Context mContext;
     private ArrayList<CharactersTb> charactersList;
+    private OnClickActivityListener mListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
         public ImageView thumbnail, overflow;
+
+        private CharactersTb marvel;
 
         public MyViewHolder(View view) {
             super(view);
@@ -46,6 +54,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MyVi
         this.charactersList = charactersList;
     }
 
+    public FavoritesAdapter(Context mContext, ArrayList<CharactersTb> charactersList, OnClickActivityListener mListener) {
+        this.mContext = mContext;
+        this.charactersList = charactersList;
+        this.mListener = mListener;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -56,11 +70,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MyVi
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        CharactersTb marvel = charactersList.get(position);
-        holder.title.setText(marvel.getName());
+        holder.marvel = charactersList.get(position);
+        holder.title.setText(holder.marvel.getTitle());
 
         // loading album cover_bg using Glide library
-        Glide.with(mContext).load(marvel.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(holder.marvel.getThumbnail()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +86,20 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MyVi
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(mContext, "Position: "+position, Toast.LENGTH_SHORT).show();
-//                DetailsActivity.createInstance(
-//                        (Activity) mContext, charactersList.get(position));
+                Bundle bundle = new Bundle();
+
+                bundle.putInt(Constants.EXTRA_ID, holder.marvel.getId());
+                bundle.putString(Constants.EXTRA_TITLE, holder.marvel.getTitle());
+                bundle.putString(Constants.EXTRA_THUMBNAIL, holder.marvel.getThumbnail());
+                bundle.putString(Constants.EXTRA_DESCRIPTION, holder.marvel.getDescription());
+                bundle.putFloat(Constants.EXTRA_PRICE, holder.marvel.getPrice());
+                bundle.putString(Constants.EXTRA_DATE, holder.marvel.getModified());
+                bundle.putInt(Constants.EXTRA_PAGE_COUNT, holder.marvel.getPageCount());
+                bundle.putString(Constants.EXTRA_STORIES, holder.marvel.getStories());
+                bundle.putString(Constants.EXTRA_CREATORS, holder.marvel.getCreators());
+                bundle.putString(Constants.EXTRA_CHARACTERS, holder.marvel.getCharacters());
+
+                mListener.navigateTo(DetailFragment.newInstance(bundle));
             }
         });
     }
