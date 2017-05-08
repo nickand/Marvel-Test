@@ -215,8 +215,7 @@ public class MainFragment extends Fragment {
 
     private class ResponseReceiver extends BroadcastReceiver {
         // Prevenimos la instanciación
-        private ResponseReceiver() {
-        }
+        private ResponseReceiver() {}
 
         // Este método es llamado cuando el BroadcastReceiver obtiene un Intent para el cual
         // ha sido registrado recibir
